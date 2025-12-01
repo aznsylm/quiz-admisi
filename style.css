@@ -1,0 +1,286 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+    padding: 15px;
+    min-height: 100vh;
+}
+
+/* Mobile First Design */
+section {
+    background: white;
+    padding: 25px 20px;
+    max-width: 500px;
+    margin: 0 auto 20px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(11, 94, 145, 0.1);
+    border: 2px solid #0b5e91;
+}
+
+h2 {
+    font-family: 'Philosopher', serif;
+    font-weight: 700;
+    color: #0b5e91;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+}
+
+/* Form Styling */
+input {
+    width: 100%;
+    padding: 15px 18px;
+    margin: 12px 0;
+    border: 2px solid #e0e0e0;
+    border-radius: 15px;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    background: #fafafa;
+}
+
+input:focus {
+    outline: none;
+    border-color: #0b5e91;
+    background: white;
+}
+
+input::placeholder {
+    color: #999;
+    font-weight: 400;
+}
+
+/* Button Styling */
+button {
+    font-weight: 400;
+    font-size: 16px;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    text-align: center;
+    min-height: 50px;
+}
+
+button[type="submit"] {
+    width: 100%;
+    background: #0b5e91;
+    color: white;
+    font-size: 18px;
+    margin-top: 15px;
+}
+
+
+
+/* Quiz Question */
+#pertanyaan {
+    font-family: 'Philosopher', serif;
+    font-size: 1.2rem;
+    color: #0b5e91;
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+/* Answer Buttons */
+.pilihan-btn {
+    width: 100%;
+    padding: 18px 20px;
+    margin: 12px 0;
+    background: white;
+    border: 2px solid #ddd;
+    color: #333;
+    text-align: left;
+    border-radius: 15px;
+    font-size: 15px;
+    line-height: 1.4;
+    min-height: auto;
+}
+
+
+
+.pilihan-btn.selected {
+    background: #0b5e91;
+    color: white;
+    border-color: #0b5e91;
+}
+
+/* Button Group */
+.button-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.button-group button {
+    flex: 1;
+    min-width: 120px;
+}
+
+.back-btn {
+    background: #6c757d;
+    color: white;
+}
+
+
+
+#nextBtn {
+    background: #0b5e91;
+    color: white;
+}
+
+
+
+/* Results Section */
+#hasilText {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.7;
+    text-align: left;
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 15px;
+    border-left: 5px solid #0b5e91;
+    margin: 20px 0;
+    font-size: 16px;
+}
+
+#hasilText strong {
+    color: #0b5e91;
+    font-size: 1.3em;
+    font-family: 'Philosopher', serif;
+    display: block;
+    margin-bottom: 15px;
+}
+
+/* Hidden Class */
+.hidden {
+    display: none;
+}
+
+/* Progress Indicator */
+#quiz-section h2 {
+    background: #0b5e91;
+    color: white;
+    padding: 15px;
+    border-radius: 15px;
+    margin: -25px -20px 25px -20px;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    section {
+        padding: 20px 15px;
+        margin: 0 auto 15px;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    #pertanyaan {
+        font-size: 1.1rem;
+    }
+    
+    .pilihan-btn {
+        padding: 15px 18px;
+        font-size: 14px;
+    }
+}
+
+/* Smooth Animations */
+section {
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Focus States for Accessibility */
+button:focus,
+input:focus {
+    outline: 2px solid #0b5e91;
+    outline-offset: 2px;
+}
+
+/* Loading State */
+.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Share Section */
+.share-section {
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 2px solid #f0f0f0;
+}
+
+.share-section h3 {
+    font-family: 'Philosopher', serif;
+    color: #0b5e91;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.share-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.share-btn {
+    width: 100%;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+    color: white;
+}
+
+.wa-btn {
+    background: #25D366;
+}
+
+.ig-btn {
+    background: #E4405F;
+}
+
+.tiktok-btn {
+    background: #000000;
+}
+
+/* Mobile share buttons */
+@media (max-width: 480px) {
+    .share-buttons {
+        gap: 10px;
+    }
+    
+    .share-btn {
+        padding: 12px 18px;
+        font-size: 14px;
+    }
+}

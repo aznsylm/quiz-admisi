@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tes Minat Program Studi</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Philosopher:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- FORM IDENTITAS -->
+    <section id="form-section">
+        <h2>Data Diri</h2>
+        <form id="formIdentitas">
+            <input type="text" id="nama" placeholder="Nama Lengkap" required>
+            <input type="text" id="asal" placeholder="Asal Sekolah" required>
+            <input type="email" id="email" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Masukkan email yang valid">
+            <input type="text" id="cita" placeholder="Cita-cita Setelah Lulus" required>
+
+            <button type="submit">Mulai Tes</button>
+        </form>
+    </section>
+
+    <!-- QUIZ SECTION -->
+    <section id="quiz-section" class="hidden">
+        <h2>Pertanyaan <span id="noSoal">1</span>/5</h2>
+        <p id="pertanyaan"></p>
+
+        <div id="pilihan"></div>
+
+        <div class="button-group">
+            <button id="backBtn" class="back-btn">Kembali</button>
+            <button id="nextBtn" class="hidden">Lanjut</button>
+        </div>
+    </section>
+
+    <!-- HASIL -->
+    <section id="hasil-section" class="hidden">
+        <h2>Hasil Kamu</h2>
+        <p id="hasilText"></p>
+        <div class="share-section">
+            <h3>Bagikan Hasilmu!</h3>
+            <div class="share-buttons">
+                <button id="shareWA" class="share-btn wa-btn">Share ke WhatsApp</button>
+                <button id="copyIG" class="share-btn ig-btn">Copy untuk Instagram</button>
+                <button id="copyTikTok" class="share-btn tiktok-btn">Copy untuk TikTok</button>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
