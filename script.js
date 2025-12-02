@@ -66,7 +66,6 @@ const pilihanDiv = document.getElementById("pilihan");
 const nextBtn = document.getElementById("nextBtn");
 const backBtn = document.getElementById("backBtn");
 
-
 // ------------------- FORM SUBMIT ----------------------
 document
   .getElementById("formIdentitas")
@@ -174,7 +173,7 @@ function hitungHasil() {
     A: "Bestie, kamu tuh tipe yang suka banget sama angka dan strategi! Dari jawaban kamu, keliatan banget kalau kamu punya jiwa entrepreneur dan suka mikir tentang duit (dalam artian positif ya!). Kamu cocok banget di bidang bisnis karena kamu tipe yang analitis dan suka challenge. Plus, zaman sekarang kan semua serba digital, jadi peluang di fintech, e-commerce, sama startup tuh unlimited banget!",
     B: "OMG, kamu tuh born to be educator! Dari pilihan kamu, keliatan banget kalau kamu punya passion buat sharing knowledge dan helping others grow. Kamu tipe yang sabar, empathetic, dan suka banget liat orang lain berkembang. Di era digital ini, educator tuh nggak cuma jadi guru loh, bisa jadi content creator edukatif, instructional designer, atau bahkan bikin startup edtech. Your impact bakal huge!",
     C: "Wah, kamu tuh typical problem solver yang suka banget sama teknologi! Dari jawaban kamu, obvious banget kalau kamu enjoy banget sama logical thinking dan creating something from scratch. Perfect timing sih, karena sekarang tuh era digital transformation, jadi demand untuk tech people tuh crazy high! Kamu bisa jadi software engineer, data scientist, atau bahkan bikin app yang next big thing!",
-    D: "Kamu tuh caring banget dan passionate sama well-being orang lain! Dari pilihan kamu, keliatan kalau kamu tipe yang detail-oriented dan genuinely care about helping people. Healthcare industry tuh always needed dan terus berkembang, apalagi setelah pandemi kemarin. Kamu bisa explore jadi dokter, researcher, atau bahkan bikin health-tech startup. Your contribution bakal meaningful banget!"
+    D: "Kamu tuh caring banget dan passionate sama well-being orang lain! Dari pilihan kamu, keliatan kalau kamu tipe yang detail-oriented dan genuinely care about helping people. Healthcare industry tuh always needed dan terus berkembang, apalagi setelah pandemi kemarin. Kamu bisa explore jadi dokter, researcher, atau bahkan bikin health-tech startup. Your contribution bakal meaningful banget!",
   };
 
   let hasil = topCategories.map((cat) => categoryNames[cat]);
@@ -193,26 +192,31 @@ function hitungHasil() {
   };
 
   document.getElementById("hasilText").innerText = "Tunggu sebentar ya... ";
-  
+
   kirimKeSpreadsheet(dataKirim)
     .then((response) => {
-      if (response === 'duplicate') {
-        document.getElementById("hasilText").innerText = "Email sudah pernah digunakan! Setiap email hanya bisa mengisi sekali.";
+      if (response === "duplicate") {
+        document.getElementById("hasilText").innerText =
+          "Email sudah pernah digunakan! Setiap email hanya bisa mengisi sekali.";
       } else {
         let explanation = "";
         if (topCategories.length === 1) {
           explanation = categoryExplanations[topCategories[0]];
         } else {
-          explanation = "Wah, kamu tuh multi-talented banget! Hasil kamu menunjukkan minat yang seimbang di beberapa bidang. Ini actually advantage loh, karena kamu bisa explore interdisciplinary programs atau double major. Fleksibilitas kamu bakal jadi kekuatan di masa depan!";
+          explanation =
+            "Wah, kamu tuh multi-talented banget! Hasil kamu menunjukkan minat yang seimbang di beberapa bidang. Ini actually advantage loh, karena kamu bisa explore interdisciplinary programs atau double major. Fleksibilitas kamu bakal jadi kekuatan di masa depan!";
         }
-        document.getElementById("hasilText").innerHTML = `<strong>${hasilText}</strong><br><br>${explanation}<br><br>Semangat ya! `;
-        
+        document.getElementById(
+          "hasilText"
+        ).innerHTML = `<strong>${hasilText}</strong><br><br>${explanation}<br><br>Semangat ya! `;
+
         // Setup share functionality
         setupShareButtons(hasilText, explanation);
       }
     })
     .catch(() => {
-      document.getElementById("hasilText").innerText = hasilText + "\n Gagal menyimpan data";
+      document.getElementById("hasilText").innerText =
+        hasilText + "\n Gagal menyimpan data";
     });
   // -------------------------------
 
@@ -225,108 +229,126 @@ function hitungHasil() {
 // ------------------- SHARE FUNCTIONS ----------------------
 function setupShareButtons(hasil, explanation) {
   const nama = document.getElementById("nama").value;
-  
+
   // WhatsApp Share - Direct to WhatsApp
-  document.getElementById("shareWA").onclick = function() {
+  document.getElementById("shareWA").onclick = function () {
     const text = `Halo! Aku baru aja ikutan quiz minat jurusan nih! 🎓\n\nHasilku: ${hasil} 🎯\n\nTernyata aku cocok banget di bidang ini! Kamu juga coba yuk, cuma 5 menit kok: ${window.location.href}`;
-    
+
     // Try to open WhatsApp app first, fallback to web
-    const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    
+    const isMobile =
+      /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      );
+
     if (isMobile) {
       // Mobile: Try WhatsApp app first
       window.location.href = `whatsapp://send?text=${encodeURIComponent(text)}`;
-      
+
       // Fallback to web WhatsApp after 2 seconds if app doesn't open
       setTimeout(() => {
-        window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+        window.open(
+          `https://wa.me/?text=${encodeURIComponent(text)}`,
+          "_blank"
+        );
       }, 2000);
     } else {
       // Desktop: Open WhatsApp Web
-      window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+      window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank");
     }
   };
-  
+
   // Instagram Share - Direct to Instagram
-  document.getElementById("copyIG").onclick = function() {
-    const text = `Quiz minat jurusan done! ✅\nHasilku: ${hasil} 🎯\n\nTernyata aku cocok banget di bidang ini! 🚀\nKamu juga coba yuk, link di bio!\n\n#QuizJurusan #KuliahDimana #GenZ #PilihJurusan #Mahasiswa`;
-    
+  document.getElementById("copyIG").onclick = function () {
+    const text = `Quiz minat jurusan done! ✅\nHasilku: ${hasil} \n\nTernyata aku cocok banget di bidang ini! 🚀\nKamu juga coba yuk, link di bio!\n\n#QuizJurusan #KuliahDimana #GenZ #PilihJurusan #Mahasiswa`;
+
     // Copy to clipboard first
-    navigator.clipboard.writeText(text).then(() => {
-      const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-      
-      if (isMobile) {
-        // Try to open Instagram app
-        window.location.href = 'instagram://camera';
-        
-        // Show instruction
-        setTimeout(() => {
-          alert('📱 Text sudah di-copy! Instagram akan terbuka, tinggal paste di Stories ya!');
-        }, 1000);
-      } else {
-        // Desktop: Open Instagram web and show instruction
-        window.open('https://www.instagram.com/', '_blank');
-        alert('💻 Text sudah di-copy! Instagram web akan terbuka, paste di Stories ya!');
-      }
-    }).catch(() => {
-      alert('❌ Gagal copy text. Coba lagi ya!');
-    });
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        const isMobile =
+          /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+            navigator.userAgent
+          );
+
+        if (isMobile) {
+          // Try to open Instagram app
+          window.location.href = "instagram://camera";
+
+          // Show instruction
+          setTimeout(() => {
+            alert(
+              "Text sudah di-copy! Instagram akan terbuka, tinggal paste di Stories ya!"
+            );
+          }, 1000);
+        } else {
+          // Desktop: Open Instagram web and show instruction
+          window.open("https://www.instagram.com/", "_blank");
+          alert(
+            "Text sudah di-copy! Instagram web akan terbuka, paste di Stories ya!"
+          );
+        }
+      })
+      .catch(() => {
+        alert("Gagal copy text. Coba lagi ya!");
+      });
   };
-  
+
   // TikTok Share - Direct to TikTok
-  document.getElementById("copyTikTok").onclick = function() {
-    const text = `POV: Baru aja ikutan quiz minat jurusan 🎓\n\nHasilku: ${hasil} 🎯\n\nUnexpected banget tapi ternyata cocok! Kalian juga coba yuk 🚀\n\n#QuizJurusan #KuliahDimana #GenZ #PilihJurusan #CollegeLife #StudentLife #Viral`;
-    
+  document.getElementById("copyTikTok").onclick = function () {
+    const text = `POV: Baru aja ikutan quiz minat jurusan 🎓\n\nHasilku: ${hasil} \n\nUnexpected banget tapi ternyata cocok! Kalian juga coba yuk 🚀\n\n#QuizJurusan #KuliahDimana #GenZ #PilihJurusan #CollegeLife #StudentLife #Viral`;
+
     // Copy to clipboard first
-    navigator.clipboard.writeText(text).then(() => {
-      const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-      
-      if (isMobile) {
-        // Try to open TikTok app
-        window.location.href = 'tiktok://camera';
-        
-        // Show instruction
-        setTimeout(() => {
-          alert('📱 Caption sudah di-copy! TikTok akan terbuka, tinggal paste ya!');
-        }, 1000);
-      } else {
-        // Desktop: Open TikTok web and show instruction
-        window.open('https://www.tiktok.com/upload', '_blank');
-        alert('💻 Caption sudah di-copy! TikTok web akan terbuka, paste di caption ya!');
-      }
-    }).catch(() => {
-      alert('❌ Gagal copy caption. Coba lagi ya!');
-    });
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        const isMobile =
+          /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+            navigator.userAgent
+          );
+
+        if (isMobile) {
+          // Try to open TikTok app
+          window.location.href = "tiktok://camera";
+
+          // Show instruction
+          setTimeout(() => {
+            alert(
+              "Caption sudah di-copy! TikTok akan terbuka, tinggal paste ya!"
+            );
+          }, 1000);
+        } else {
+          // Desktop: Open TikTok web and show instruction
+          window.open("https://www.tiktok.com/upload", "_blank");
+          alert(
+            "Caption sudah di-copy! TikTok web akan terbuka, paste di caption ya!"
+          );
+        }
+      })
+      .catch(() => {
+        alert("Gagal copy caption. Coba lagi ya!");
+      });
   };
 }
 
 // ------------------- KIRIM KE SPREADSHEET ----------------------
 function kirimKeSpreadsheet(data) {
   return new Promise((resolve, reject) => {
-    const scriptURL = "https://script.google.com/macros/s/AKfycbxlum5xWPqMP7m1LWX0Z3pB38M10XqN9QBHPMjMTdmesunhHgy8LK1wVQIlxzp8nXbg/exec";
-    
-    // Create unique callback name
-    const callbackName = 'callback_' + Date.now();
-    
-    // Create callback function
-    window[callbackName] = function(response) {
-      delete window[callbackName];
-      document.head.removeChild(script);
-      resolve(response);
-    };
-    
-    // Create script element for JSONP
-    const script = document.createElement('script');
-    const params = new URLSearchParams(data);
-    params.append('callback', callbackName);
-    script.src = scriptURL + '?' + params.toString();
-    
-    script.onerror = function() {
-      delete window[callbackName];
-      document.head.removeChild(script);
-      reject(new Error('Gagal mengirim data'));
-    };
-    
-    document.head.appendChild(script);
+    const scriptURL =
+      "https://script.google.com/macros/s/AKfycbwV19wf0YZbS4OeNmhPQziwHxmkXCulxuB0fiBF7-048xL2Irei89BDNjUfGCGn1oaRtw/exec";
+
+    fetch(scriptURL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+    })
+    .then(() => {
+      resolve('success');
+    })
+    .catch((error) => {
+      reject(error);
+    });
   });
 }
