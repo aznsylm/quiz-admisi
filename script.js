@@ -1,9 +1,9 @@
 // ------------------- DATA PERTANYAAN ----------------------
 const soal = [
   {
-    t: "Coba bayangin, topik obrolan yang paling seru di timeline atau tongkrongan menurut kamu apa?",
+    t: "Menurut kamu, kalau lagi nongkrong yang paling seru ngobrolin soal apa?",
     a: [
-      "Harga tiket konser naik/turun, inflasi",
+      "Harga tiket konser atau soal inflasi",
       "Cara belajar yang asyik, tips & tricks biar guru suka sama kelas kita",
       "Bocoran smartphone atau game baru, gimana robot AI bisa bikin gambar",
       "Berita virus, review produk skincare yang aman, atau cara mencegah sakit",
@@ -13,7 +13,7 @@ const soal = [
   {
     t: "Kalau lagi penasaran banget sama sesuatu, kamu tim yang ngapain?",
     a: [
-      "Langsung bikin spreadsheet atau hitung-hitungan biar tahu untung ruginya",
+      "Langsung bikin hitung-hitungan biar tahu untung ruginya",
       "Mencari cara paling efektif buat jelasin hal itu ke teman yang belum paham",
       "Membongkar sistem atau coding untuk melihat cara kerjanya secara teknis",
       "Mencari artikel ilmiah untuk tahu penyebab dan dampaknya pada tubuh manusia",
@@ -31,7 +31,7 @@ const soal = [
     k: ["A", "B", "C", "D"],
   },
   {
-    t: "Dalam kerja kelompok atau bikin proyek, peran dan hal apa yang paling kamu utamakan?",
+    t: "Kalau kamu lagi kerja kelompok atau bikin proyek, peran dan hal apa yang akan paling kamu utamakan?",
     a: [
       "Jadi Bendahara atau Manajer yang memastikan anggaran dan keuntungan aman",
       "Jadi Fasilitator yang membantu semua anggota tim belajar",
