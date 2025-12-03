@@ -66,6 +66,62 @@ const pilihanDiv = document.getElementById("pilihan");
 const nextBtn = document.getElementById("nextBtn");
 const backBtn = document.getElementById("backBtn");
 
+// ------------------- BACKGROUND MUSIC ----------------------
+const bgMusic = document.getElementById("bgMusic");
+const musicToggle = document.getElementById("musicToggle");
+let isMuted = false;
+
+// Unmute and start music on first user interaction
+function startMusic() {
+  bgMusic.muted = false;
+  bgMusic.volume = 0.3;
+  bgMusic.play();
+}
+
+// Music toggle functionality
+musicToggle.addEventListener('click', function() {
+  if (isMuted) {
+    bgMusic.muted = false;
+    bgMusic.play();
+    musicToggle.innerHTML = '🔊 Musik';
+    musicToggle.classList.remove('muted');
+    isMuted = false;
+  } else {
+    bgMusic.pause();
+    musicToggle.innerHTML = '🔇 Musik';
+    musicToggle.classList.add('muted');
+    isMuted = true;
+  }
+});
+
+// Auto-start music on first interaction
+document.addEventListener('click', startMusic, { once: true });
+document.addEventListener('touchstart', startMusic, { once: true });
+
+// ------------------- SCROLL DOWN BUTTON ----------------------
+document.getElementById("scrollDownBtn").addEventListener("click", function() {
+  // Check which section is currently visible and scroll to the appropriate target
+  if (!formSection.classList.contains("hidden")) {
+    // If form is visible, scroll to it
+    document.getElementById("form-section").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  } else if (!quizSection.classList.contains("hidden")) {
+    // If quiz is visible, scroll to it
+    document.getElementById("quiz-section").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  } else if (!hasilSection.classList.contains("hidden")) {
+    // If result is visible, scroll to it
+    document.getElementById("hasil-section").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }
+});
+
 // ------------------- FORM SUBMIT ----------------------
 document
   .getElementById("formIdentitas")
@@ -171,52 +227,57 @@ function hitungHasil() {
 
   const categoryExplanations = {
     A: [
-      "Bestie, kamu tuh tipe yang suka banget sama angka dan strategi! Dari jawaban kamu, keliatan banget kalau kamu punya jiwa entrepreneur dan suka mikir tentang duit (dalam artian positif ya!). Kamu cocok banget di bidang bisnis karena kamu tipe yang analitis dan suka challenge. Plus, zaman sekarang kan semua serba digital, jadi peluang di fintech, e-commerce, sama startup tuh unlimited banget!",
-      "Bestie, kamu tuh tipe analitis yang suka banget sama angka dan strategi! Kamu punya jiwa entrepreneur yang kuat dan berorientasi pada hasil dan profit. Kamu cocok di bidang bisnis karena kamu analitis dan punya mindset investasi. Peluang di sektor Finansial dan Manajemen tuh unlimited banget! Semangat ya!",
-      "Vibes-mu tuh Raja Angka banget! Kamu punya bakat buat ngatur finansial dan melihat alur keuntungan. Otakmu encer buat analisis data dan strategi bisnis yang profitable. Goal-mu pasti kemandirian finansial. Jurusan Akuntansi/Ekonomi auto cocok! Ayo, jadi investor kelas kakap!",
-      "Clearly, kamu punya pola pikir strategis dan nyaman dengan isu-isu makro ekonomi. Kamu itu pemikir jangka panjang yang selalu mempertimbangkan untung-rugi. Kamu punya kemampuan analisis tajam di bidang finansial. Tunjukkan strategi killer-mu di dunia bisnis!",
-      "Kamu adalah tipe pemimpin yang fokus pada manajemen anggaran dan memastikan kelancaran operasional. Jiwa Bendahara/Manajer kamu kuat. Ini modal utama buat jadi pemimpin perusahaan yang sukses dan inovatif. Jangan ragu gasss ke Manajemen atau Bisnis!",
-      "Kamu nyaman banget sama pelajaran yang melibatkan data keuangan dan pencatatan transaksi. Minatmu kelihatan banget di Akuntansi dan Ekonomi. Kamu adalah tipe yang teliti, detail, dan berorientasi pada profit. Ciptakan startup yang cuan abis!",
-      "Kamu tipe yang punya urge buat menghitung risiko dan keuntungan sebelum bertindak. Sign ini menunjukkan kamu punya kemampuan analisis bisnis yang kuat. Ekonomi Terapan atau Manajemen Bisnis bakal boost skill alami kamu. Lanjutkan fokus pada analisis dan peluang!",
-      "Minatmu emang di mengatur alokasi dana dan membuat keputusan finansial yang menguntungkan. Vibes-mu cocok banget jadi Direktur Keuangan atau Konsultan Investasi. Kamu punya sense kuat di bidang pasar modal. Kejar impian jadi ahli investasi!",
-      "Kamu punya jiwa wirausaha yang kuat dan fokus pada bagaimana memastikan hasil dari sebuah proyek. Ini sign kamu cocok di dunia Bisnis dan Pemasaran. Kamu punya potensi besar jadi entrepreneur yang handal. Jadilah entrepreneur yang sukses!"
+      "Nakama, kamu punya jiwa Nami banget! Kayak navigator Straw Hat yang jago ngatur keuangan crew, kamu juga punya bakat alami buat strategi bisnis dan analisis finansial. Kamu tipe yang bisa bikin 'treasure map' menuju kesuksesan ekonomi. Siap jadi 'Cat Burglar' di dunia bisnis?",
+      "Wah, kamu mirip Doflamingo dalam hal bisnis nih! Punya kemampuan analitis yang tajam dan mindset strategis buat ngatur 'kingdom' finansial. Kamu cocok jadi 'Joker' di dunia ekonomi yang bisa manipulasi pasar dengan cerdas. Time to rule the business world!",
+      "Kamu tuh kayak Crocodile yang punya ambisi besar! Selalu mikir jangka panjang dan punya rencana matang buat ngebangun 'Baroque Works' versi bisnis. Kemampuan analisis data dan strategi investasimu bakal bikin kamu jadi 'Warlord' di dunia finansial!",
+      "Vibes kamu mirip Buggy yang jadi Emperor! Dari yang kecil-kecilan tapi punya jiwa entrepreneur sejati. Kamu punya bakat buat ngelihat peluang bisnis dan bikin 'Buggy Delivery' versi startup. Siap jadi Captain di lautan ekonomi digital?",
+      "Kamu punya karakter Iceberg yang jadi mayor Water 7! Jago banget ngatur operasional dan manajemen keuangan. Kemampuan leadership dan business planning-mu bakal bikin kamu sukses jadi 'Galley-La Company' owner di dunia nyata!",
+      "Nakama, kamu mirip Tom yang bikin kapal impian! Teliti, detail, dan selalu fokus pada kualitas hasil. Kamu cocok jadi 'shipwright' di dunia akuntansi yang bisa bikin 'financial ship' yang kuat dan tahan badai ekonomi!",
+      "Kamu kayak Spandam yang jago strategi (tapi versi baik)! Selalu hitung untung-rugi sebelum bertindak dan punya kemampuan analisis risiko yang tajam. Perfect buat jadi 'CP9 agent' di dunia manajemen bisnis!",
+      "Vibes kamu mirip Gild Tesoro yang menguasai dunia entertainment! Punya sense kuat di bidang investasi dan pasar modal. Kamu bisa jadi 'Golden Emperor' yang ngatur alokasi dana dengan bijak. Time to make it rain gold!",
+      "Kamu punya jiwa Whitebeard dalam memimpin 'family business'! Fokus pada hasil dan kesejahteraan crew, plus punya kemampuan entrepreneurship yang kuat. Siap jadi 'Yonko' di dunia startup yang powerful dan berpengaruh!"
     ],
     B: [
-      "OMG, kamu tuh born to be educator! Dari pilihan kamu, keliatan banget kalau kamu punya passion buat sharing knowledge dan helping others grow. Kamu tipe yang sabar, empathetic, dan suka banget liat orang lain berkembang. Di era digital ini, educator tuh nggak cuma jadi guru loh, bisa jadi content creator edukatif, instructional designer, atau bahkan bikin startup edtech. Your impact bakal huge!",
-      "Bestie, kamu tuh punya vibe jadi mentor sejati! Jawaban kamu menunjukkan passion untuk berbagi ilmu dan membantu orang lain berkembang. Kamu cocok di bidang Pendidikan karena kamu punya kemampuan komunikasi dan empati yang tinggi. Kamu bisa jadi guru atau edukator masa kini! Ayo, sebarkan ilmu terbaikmu!",
-      "Wih, kamu punya bakat buat menjelaskan hal-hal kompleks dengan cara yang mudah dipahami! Ini basic skill banget buat jadi pendidik yang keren. Kamu nyaman di lingkungan sosial dan suka jadi Fasilitator di tim. Jurusan Pendidikan auto cocok! Saatnya jadi guru/mentor idola!",
-      "Kamu tertarik pada interaksi sosial dan suka membantu semua anggota tim belajar bersama. Basically, kamu itu Pembimbing alami. Kamu cocok banget di bidang yang melibatkan pelatihan dan pengembangan sumber daya manusia. Kembangkan potensi orang lain!",
-      "Kamu punya ide bisnis yang berfokus pada edukasi atau lembaga belajar. Passion-mu itu emang ada di dunia pendidikan dan sharing knowledge! Kamu punya skill untuk menciptakan metode belajar yang efektif dan menyenangkan. Jadilah pendiri platform edukasi online!",
-      "Kamu suka ngobrolin tentang cara belajar dan strategi sosial. Itu nunjukin kamu peduli pada dinamika kelompok dan knowledge transfer. Jurusan yang berkaitan dengan Ilmu Pendidikan atau Sosiologi bakal boost skill sosialmu. Jadilah social butterfly yang cerdas!",
-      "Kamu tim yang fokus pada efektivitas penyampaian materi agar orang lain mengerti. Vibes kamu kuat banget buat jadi Trainer/Coach Profesional. Kamu cocok di jurusan yang fokus pada pengajaran dan pelatihan. Tingkatkan skill mentoring-mu!",
-      "Pilihanmu mengarah ke peran Fasilitator yang membantu tim belajar dan membimbing. Ini menunjukkan kamu punya mindset pemimpin dan pendidik sejati. Kamu punya bakat untuk mengajar dan menginspirasi orang lain. Ayo, kejar impian jadi Dosen muda yang inovatif!",
-      "Kamu tertarik banget sama metode belajar yang asyik dan lembaga bimbingan berbasis digital. Ini sign kalau kamu punya passion di dunia edukasi dengan sentuhan teknologi. Kamu punya potensi besar di Teknologi Pendidikan. Ciptakan metode belajar masa depan!"
+      "Wah, kamu mirip Robin banget! Kayak archaeologist Straw Hat yang suka sharing knowledge tentang sejarah, kamu juga punya passion buat ngajarin dan ngembangin orang lain. Kamu bisa jadi 'Devil Child' yang nyebarin ilmu ke seluruh dunia. Ready to decode the mysteries of education?",
+      "Kamu punya vibes Rayleigh yang jadi mentor Luffy! Sabar, wise, dan punya kemampuan komunikasi yang luar biasa. Kamu cocok jadi 'Dark King' di dunia pendidikan yang bisa guide generasi muda menuju impian mereka. Time to train the next Pirate King!",
+      "Nakama, kamu kayak Coby yang selalu eager belajar dan ngajarin! Punya bakat buat menjelaskan hal kompleks dengan cara yang mudah dipahami. Kamu bisa jadi 'Marine Captain' di dunia edukasi yang inspiring dan motivating!",
+      "Kamu mirip Shanks yang jadi role model! Punya charisma natural buat jadi pembimbing dan mentor. Kemampuan leadership dan empati-mu bakal bikin kamu jadi 'Yonko' di dunia pengembangan SDM. Lead your crew to success!",
+      "Vibes kamu kayak Dr. Kureha yang wise dan knowledgeable! Punya passion buat sharing wisdom dan menciptakan metode pembelajaran yang efektif. Kamu bisa jadi 'Witch Doctor' di dunia edtech yang revolutionary!",
+      "Kamu punya karakter Jinbe yang jadi bridge antar komunitas! Suka ngobrolin strategi sosial dan peduli sama dinamika kelompok. Perfect buat jadi 'Knight of the Sea' di bidang sosiologi pendidikan!",
+      "Nakama, kamu mirip Sengoku yang jadi strategist handal! Fokus pada efektivitas training dan punya skill mentoring yang kuat. Kamu cocok jadi 'Fleet Admiral' di dunia coaching profesional!",
+      "Kamu kayak Vegapunk yang genius dan innovative! Punya mindset futuristik buat menciptakan revolusi di dunia pendidikan. Siap jadi 'World's Greatest Scientist' di bidang teknologi pembelajaran?",
+      "Vibes kamu mirip Brook yang bisa 'revive' semangat belajar orang! Punya passion di edukasi digital dan metode pembelajaran yang engaging. Time to be the 'Soul King' of modern education!"
     ],
     C: [
-      "Wah, kamu tuh typical problem solver yang suka banget sama teknologi! Dari jawaban kamu, obvious banget kalau kamu enjoy banget sama logical thinking dan creating something from scratch. Perfect timing sih, karena sekarang tuh era digital transformation, jadi demand untuk tech people tuh crazy high! Kamu bisa jadi software engineer, data scientist, atau bahkan bikin app yang next big thing!",
-      "Fix banget, kamu tuh anak Tech Enthusiast! Pola pikirmu itu Teknik banget, suka menciptakan sistem, dan membuat program. Kamu cocok di bidang ini karena punya logika yang kuat dan update soal inovasi teknologi. Peluang jadi engineer atau developer itu unlimited banget! Saatnya menciptakan teknologi masa depan!",
-      "Kamu tim yang suka membongkar dan menganalisis cara kerja sistem secara teknis. Udah jelas, otakmu itu Informatika banget, fokus pada logika dan algoritma. Jurusan Teknik Informatika bakal jadi playground yang seru buatmu! Tunjukkan skill coding terbaikmu!",
-      "Kamu suka Matematika Terapan dan tertarik pada perancangan alat atau robot. Kamu punya mindset seorang inventor yang suka menciptakan hal-hal fisik. Teknik Elektro atau Mekatronika is calling! Ayo, rakit inovasi fisik impianmu!",
-      "Kamu ingin berperan sebagai Teknisi yang merancang sistem digital atau program. Ini sign kuat kalau passion-mu di Teknik Informatika atau Sistem Informasi. Kamu punya bakat merancang hardware dan software! Jadilah engineer sistem jempolan!",
-      "Kamu tertarik banget sama perkembangan teknologi dan inovasi seperti AI. Kamu jago ngelogika sistem dan punya passion di bidang digital. Ilmu Komputer atau Teknik cocok buatmu. Kejar karier di Tech Industry yang lagi naik daun!",
-      "Ide bisnismu merakit alat dan mendesain sistem yang belum ada. Kamu punya mindset seorang engineer sejati! Kamu butuh platform yang fokus pada perancangan dan konstruksi, yaitu jurusan Teknik (Apapun cabangnya). Desainlah alat yang mengubah cara kerja dunia!",
-      "Kamu tertarik banget sama logika matematika dan membuat program komputer. Ini menunjukkan kamu punya modal logic yang kuat. Jurusan Teknik Komputer atau Matematika yang fokus pada coding cocok banget buatmu. Jadilah master logika dan algoritma!",
-      "Pilihanmu konsisten di area bikin program dan merancang sistem yang terstruktur. Kamu nyaman banget sama dunia software development. Sistem Informasi adalah tempat yang tepat buat skill merancangmu. Rancang sistem yang efisien dan andal!"
+      "SUUUPER! Kamu punya vibe Franky yang kuat! Kayak shipwright genius yang bikin Thousand Sunny, kamu juga suka banget bikin dan merancang sesuatu dari nol. Kamu cocok jadi 'Cyborg' di dunia teknologi. Time to build your dream ship of innovation!",
+      "Nakama, kamu mirip Vegapunk banget! Punya mindset scientist yang suka menciptakan teknologi revolusioner. Kemampuan logical thinking dan innovation-mu bakal bikin kamu jadi 'World's Greatest Scientist' di era digital transformation!",
+      "Kamu kayak Usopp yang jadi 'God' of engineering! Suka membongkar sistem dan bikin gadget keren dari bahan sederhana. Otakmu itu perfect buat jadi 'Sniper King' di dunia coding dan algoritma!",
+      "Vibes kamu mirip Caesar Clown dalam hal innovation (tapi versi baik)! Punya passion buat merancang dan menciptakan teknologi fisik yang amazing. Siap jadi 'Master of Science' di bidang robotika dan mekatronika?",
+      "Kamu punya karakter Enel yang menguasai teknologi canggih! Jago banget merancang sistem digital dan punya vision futuristik. Perfect buat jadi 'God of Lightning' di dunia sistem informasi!",
+      "Nakama, kamu kayak Judge yang bikin Germa 66 technology! Tertarik sama AI dan inovasi cutting-edge. Kemampuan analisis sistem-mu bakal bikin kamu jadi 'Vinsmoke' di tech industry!",
+      "Kamu mirip Tom yang bikin Sea Train! Punya mindset engineer sejati yang suka design sistem transportation dan infrastructure. Time to build the 'Puffing Tom' of modern technology!",
+      "Vibes kamu kayak Kizaru yang menguasai light technology! Jago banget sama logika matematika dan programming. Siap jadi 'Admiral' di dunia komputer yang bisa move at the speed of light?",
+      "Kamu punya jiwa Smoker yang systematic dan terstruktur! Nyaman banget sama software development dan system architecture. Perfect buat jadi 'White Hunter' yang hunt bugs dan create efficient systems!"
     ],
     D: [
-      "Kamu tuh caring banget dan passionate sama well-being orang lain! Dari pilihan kamu, keliatan kalau kamu tipe yang detail-oriented dan genuinely care about helping people. Healthcare industry tuh always needed dan terus berkembang, apalagi setelah pandemi kemarin. Kamu bisa explore jadi dokter, researcher, atau bahkan bikin health-tech startup. Your contribution bakal meaningful banget!",
-      "Gak salah lagi, kamu punya concern tinggi sama kesejahteraan dan tubuh manusia! Jawaban kamu menunjukkan passion untuk meneliti dampak pada kesehatan. Kamu cocok di bidang Kesehatan karena punya sense of care dan empati yang kuat. Karier kamu bisa jadi dokter, perawat, atau peneliti! Jadilah pahlawan kesehatan masa depan!",
-      "Kamu tim yang suka mencari tahu penyebab dan dampak fenomena pada tubuh secara ilmiah. Ini mindset dokter dan peneliti medis sejati! Kamu tertarik sama Biologi dan Kimia yang mendalam. Jurusan Kedokteran atau Biomedis cocok buatmu. Lanjutkan riset ilmiahmu di bidang medis!",
-      "Kamu paling concern sama pencegahan penyakit dan kesehatan kolektif/komunitas. Vibes kamu kuat banget di Kesehatan Masyarakat atau Gizi. Kamu punya sense of duty yang tinggi dan peduli pada wellness orang banyak. Sebarkan mindset hidup sehat pada komunitas!",
-      "Kamu tertarik banget sama Kimia, Biologi, dan bagaimana zat bereaksi dalam tubuh. Ide bisnismu mendirikan fasilitas kesehatan? Kamu punya passion menemukan solusi medis. Jurusan Farmasi bakal support minat risetmu! Ayo, temukan dan kembangkan obat masa depan!",
-      "Peran utamamu di tim adalah menjaga kesejahteraan dan memastikan kondisi fisik teman-teman aman. Ini menunjukkan kamu punya skill perhatian dan empati yang tinggi. Kamu cocok jadi Perawat atau Tenaga Medis lainnya. Berikan pelayanan dan perhatian medis terbaik!",
-      "Kamu suka concern pada aspek-aspek kesehatan pribadi dan kesehatan jangka panjang. Ini nunjukin kamu punya perhatian ke detail kesehatan. Ilmu Gizi atau Kesehatan Lingkungan bisa jadi pilihan keren! Jadilah ahli wellness yang up-to-date!",
-      "Ide bisnismu aplikasi konsultasi atau solusi kesehatan digital. Kamu ngeliat peluang di bidang Kesehatan dengan sentuhan teknologi. Kamu punya mindset yang ingin mempermudah akses kesehatan. Ciptakan aplikasi kesehatan yang membantu banyak orang!",
-      "Pilihanmu mengarah ke semua hal yang berhubungan dengan tubuh dan penelitian ilmiah mendalam. Ini sign kuat kamu nyaman dengan ilmu Biologi yang detail. Biologi atau Ilmu Forensik adalah platform yang tepat. Selami detail ilmu hayati dan tubuh manusia!"
+      "Kamu tuh Chopper banget, nakama! Kayak doctor Straw Hat yang selalu peduli sama kesehatan crew, kamu juga punya jiwa caring dan detail-oriented. Kamu bisa jadi 'Monster Point' di dunia medis. Siap jadi dokter yang bisa nyembuhin semua penyakit?",
+      "Nakama, kamu mirip Law yang jadi 'Surgeon of Death'! Punya passion buat meneliti dan concern tinggi sama well-being manusia. Kemampuan analisis medis-mu bakal bikin kamu jadi dokter atau researcher yang handal. Time to perform the ultimate operation!",
+      "Kamu kayak Crocus yang jadi ship doctor Roger! Suka mencari tahu penyebab penyakit secara ilmiah dan punya mindset researcher sejati. Perfect buat jadi 'Twin Cape Doctor' di dunia biomedis yang revolutionary!",
+      "Vibes kamu mirip Ivankov yang peduli sama kesehatan komunitas! Concern banget sama pencegahan penyakit dan wellness orang banyak. Siap jadi 'Miracle Person' di bidang kesehatan masyarakat?",
+      "Kamu punya karakter Hiluluk yang passionate sama medical innovation! Tertarik banget sama kimia dan biologi, plus punya vision buat bikin 'cherry blossom medicine' yang bisa heal everyone. Time to create miracle drugs!",
+      "Nakama, kamu kayak Kureha yang jadi guardian of health! Peran utamamu selalu jaga kesejahteraan orang lain dengan skill empati yang tinggi. Perfect buat jadi 'Witch Doctor' yang caring dan professional!",
+      "Kamu mirip Marco yang punya 'Phoenix' healing power! Concern banget sama kesehatan jangka panjang dan detail wellness. Siap jadi ahli gizi atau kesehatan lingkungan yang bisa regenerate community health?",
+      "Vibes kamu kayak Vegapunk yang bikin medical technology! Punya vision buat menciptakan health-tech solution yang bisa help banyak orang. Time to be the 'World's Greatest Medical Scientist'!",
+      "Kamu punya jiwa Zeff yang protective terhadap 'family'! Selalu concern sama detail kesehatan dan safety orang-orang terdekat. Perfect buat explore biologi atau forensik yang bisa protect and serve justice!"
     ]
   };
 
   let hasil = topCategories.map((cat) => categoryNames[cat]);
+  
+  let hasilText =
+    hasil.length === 1
+      ? `Minatmu adalah: ${hasil[0]}`
+      : `Minatmu adalah: ${hasil.join(" dan ")}`;
 
   // --- SIMPAN KE SPREADSHEET ---
   const dataKirim = {
@@ -249,7 +310,7 @@ function hitungHasil() {
         }
         document.getElementById(
           "hasilText"
-        ).innerHTML = `<strong>${hasilText}</strong><br><br>${explanation}<br><br>Semangat ya! `;
+        ).innerHTML = `<h4>${hasilText}</h4><br>${explanation}<br><br>Semangat ya! `;
 
         // Setup share functionality
         setupShareButtons(hasilText, explanation);
@@ -259,12 +320,11 @@ function hitungHasil() {
       document.getElementById("hasilText").innerText =
         hasilText + "\n Gagal menyimpan data";
     });
-  // -------------------------------
+}
 
-  let hasilText =
-    hasil.length === 1
-      ? `Kategori minat kamu adalah: ${hasil[0]}`
-      : `Kategori minat kamu adalah: ${hasil.join(" dan ")}`;
+// ------------------- UTILITY FUNCTIONS ----------------------
+function isMobileDevice() {
+  return /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 }
 
 // ------------------- SHARE FUNCTIONS ----------------------
@@ -273,15 +333,9 @@ function setupShareButtons(hasil, explanation) {
 
   // WhatsApp Share - Direct to WhatsApp
   document.getElementById("shareWA").onclick = function () {
-    const text = `Halo! Aku baru aja ikutan quiz minat jurusan nih! 🎓\n\nHasilku: ${hasil} 🎯\n\nTernyata aku cocok banget di bidang ini! Kamu juga coba yuk, cuma 5 menit kok: ${window.location.href}`;
+    const text = `OMG! Baru tau ternyata aku cocok banget di bidang ${hasil}! \n\nQuiz ini relate banget, cuma 5 pertanyaan tapi hasilnya spot on! \n\nKamu penasaran ga sih jurusan apa yang cocok buat kamu? Coba deh: kenaliaku.almaata.ac.id\n\nDijamin mind-blown! 🤯`;
 
-    // Try to open WhatsApp app first, fallback to web
-    const isMobile =
-      /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
-      );
-
-    if (isMobile) {
+    if (isMobileDevice()) {
       // Mobile: Try WhatsApp app first
       window.location.href = `whatsapp://send?text=${encodeURIComponent(text)}`;
 
@@ -300,18 +354,13 @@ function setupShareButtons(hasil, explanation) {
 
   // Instagram Share - Direct to Instagram
   document.getElementById("copyIG").onclick = function () {
-    const text = `Quiz minat jurusan done! ✅\nHasilku: ${hasil} \n\nTernyata aku cocok banget di bidang ini! 🚀\nKamu juga coba yuk, link di bio!\n\n#QuizJurusan #KuliahDimana #GenZ #PilihJurusan #Mahasiswa`;
+    const text = `Plot twist: Ternyata aku cocok di ${hasil}! 😳\n\nQuiz 5 menit ini beneran buka mata banget... Ga nyangka hasilnya serelate ini! ✨\n\nKalian berani ga coba? Siap-siap kaget sama hasilnya \nkenaliaku.almaata.ac.id\n\n`;
 
     // Copy to clipboard first
     navigator.clipboard
       .writeText(text)
       .then(() => {
-        const isMobile =
-          /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-            navigator.userAgent
-          );
-
-        if (isMobile) {
+        if (isMobileDevice()) {
           // Try to open Instagram app
           window.location.href = "instagram://camera";
 
@@ -336,18 +385,13 @@ function setupShareButtons(hasil, explanation) {
 
   // TikTok Share - Direct to TikTok
   document.getElementById("copyTikTok").onclick = function () {
-    const text = `POV: Baru aja ikutan quiz minat jurusan 🎓\n\nHasilku: ${hasil} \n\nUnexpected banget tapi ternyata cocok! Kalian juga coba yuk 🚀\n\n#QuizJurusan #KuliahDimana #GenZ #PilihJurusan #CollegeLife #StudentLife #Viral`;
+    const text = `POV: Quiz 5 menit ini literally changed my perspective 😭\n\nHasilku: ${hasil}\n\nGa nyangka bisa serelate ini... Kalian harus coba! Tapi siap-siap shock ya \n\nkenaliaku.almaata.ac.id\n\n`;
 
     // Copy to clipboard first
     navigator.clipboard
       .writeText(text)
       .then(() => {
-        const isMobile =
-          /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-            navigator.userAgent
-          );
-
-        if (isMobile) {
+        if (isMobileDevice()) {
           // Try to open TikTok app
           window.location.href = "tiktok://camera";
 

@@ -7,51 +7,73 @@
     <title>Tes Minat Program Studi</title>
     <link rel="stylesheet" href="style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Philosopher:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="assets/image/BG WEB QUIZ.png" as="image" fetchpriority="high">
+    <link rel="preload" href="assets/image/Karakter.png" as="image">
+    <link rel="preload" href="assets/background-music.mp3" as="audio">
+    <link rel="icon" href="assets/image/LOGO4B.png" type="image/x-icon">
 </head>
 
 <body>
+    <!-- BACKGROUND MUSIC -->
+    <audio id="bgMusic" loop preload="auto" autoplay muted>
+        <source src="assets/audio/One-Piece.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- MUSIC TOGGLE BUTTON -->
+    <button id="musicToggle" class="music-toggle">🔊 Musik</button>
 
-    <!-- FORM IDENTITAS -->
-    <section id="form-section">
-        <h2>"Selamat datang, Calon Mahasiswa! Tidak mau kan salah langkah memilih jurusan?"</h2>
-        <p style="text-align: justify;">Memilih jurusan kuliah itu penting dan sering kali membingungkan. Tes singkat ini dirancang untuk membantumu menemukan jurusan yang benar-benar cocok dengan minat, bakat tersembunyi, dan gaya belajarmu.</p>
-        <p style="text-align: justify;"><strong>Langkah awal: Isi data diri mu di bawah ini, dan mari kita mulai eksplorasi potensi terbaik mu!</strong></p>
-        <form id="formIdentitas">
-            <input type="text" id="nama" placeholder="Nama Lengkap" required>
-            <input type="text" id="asal" placeholder="Asal Sekolah" required>
-            <input type="text" id="email" placeholder="Email" required>
-            <input type="text" id="cita" placeholder="Cita-cita Setelah Lulus" required>
-
-            <button type="submit">Mulai Tes</button>
-        </form>
-    </section>
-
-    <!-- QUIZ SECTION -->
-    <section id="quiz-section" class="hidden">
-        <h2>Pertanyaan <span id="noSoal">1</span>/5</h2>
-        <p id="pertanyaan"></p>
-
-        <div id="pilihan"></div>
-
-        <div class="button-group">
-            <button id="backBtn" class="back-btn">Kembali</button>
-            <button id="nextBtn" class="hidden">Lanjut</button>
+    <!-- MAIN CONTAINER -->
+    <div class="main-container">
+        <!-- WELCOME TEXT -->
+        <div class="welcome-section">
+            <h2>Udah nemuin 'One Piece' jurusan impianmu?</h2>
+            <p class="welcome-text">Kayak Luffy yang nyari One Piece, kamu juga lagi nyari "harta karun" berupa jurusan yang tepat kan? Quiz ini bakal jadi peta harta karun yang nunjukin jalan menuju masa depan cerah kamu. Ready to sail, nakama?</p>
+            <button id="scrollDownBtn" class="scroll-down-btn">Gaskeun!</button>
+            <img src="assets/image/Karakter.png" alt="Karakter Image" class="karakter-image" loading="eager">
         </div>
-    </section>
 
-    <!-- HASIL -->
-    <section id="hasil-section" class="hidden">
-        <h2>Hasil Kamu</h2>
-        <p id="hasilText"></p>
-        <div class="share-section">
-            <h3>Bagikan Hasilmu!</h3>
-            <div class="share-buttons">
-                <button id="shareWA" class="share-btn wa-btn">Share ke WhatsApp</button>
-                <button id="copyIG" class="share-btn ig-btn">Copy untuk Instagram</button>
-                <button id="copyTikTok" class="share-btn tiktok-btn">Copy untuk TikTok</button>
-            </div>
+        <!-- RIGHT COLUMN -->
+        <div class="right-column">
+            <!-- FORM IDENTITAS -->
+            <section id="form-section">
+                <form id="formIdentitas">
+                    <input type="text" id="nama" placeholder="Nama Lengkap" required>
+                    <input type="text" id="asal" placeholder="Asal Sekolah" required>
+                    <input type="text" id="email" placeholder="Email" required>
+                    <input type="text" id="cita" placeholder="Cita-cita Setelah Lulus" required>
+
+                    <button type="submit">Mulai Tes</button>
+                </form>
+            </section>
+
+            <!-- QUIZ SECTION -->
+            <section id="quiz-section" class="hidden">
+                <h2>Pertanyaan <span id="noSoal">1</span>/5</h2>
+                <p id="pertanyaan"></p>
+
+                <div id="pilihan"></div>
+
+                <div class="button-group">
+                    <button id="backBtn" class="back-btn">Kembali</button>
+                    <button id="nextBtn" class="hidden">Lanjut</button>
+                </div>
+            </section>
+
+            <!-- HASIL -->
+            <section id="hasil-section" class="hidden">
+                <h3>Hasil Kamu</h3>
+                <p id="hasilText"></p>
+                <div class="share-section">
+                    <h3>Bagikan Hasilmu!</h3>
+                    <div class="share-buttons">
+                        <button id="shareWA" class="share-btn wa-btn">Share ke WhatsApp</button>
+                        <button id="copyIG" class="share-btn ig-btn">Copy untuk Instagram</button>
+                        <button id="copyTikTok" class="share-btn tiktok-btn">Copy untuk TikTok</button>
+                    </div>
+                </div>
+            </section>
         </div>
-    </section>
+    </div>
 
     <script src="script.js"></script>
 </body>
