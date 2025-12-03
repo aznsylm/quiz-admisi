@@ -14,7 +14,9 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-attachment: scroll;
+    will-change: transform;
+    contain: layout style paint;
 }
 
 /* Disable scroll on desktop */
@@ -74,6 +76,37 @@ section {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    transition: opacity 0.3s ease;
+}
+
+.karakter-image.loading {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    min-height: 200px;
+    opacity: 0.7;
+}
+
+.karakter-image:not(.loading) {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 /* Scroll Down Button */

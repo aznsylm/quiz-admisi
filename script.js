@@ -327,6 +327,26 @@ function isMobileDevice() {
   return /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 }
 
+// ------------------- IMAGE LOADING OPTIMIZATION ----------------------
+document.addEventListener('DOMContentLoaded', function() {
+  const karakterImage = document.querySelector('.karakter-image');
+  
+  if (karakterImage) {
+    // Add loading class for skeleton effect
+    karakterImage.classList.add('loading');
+    
+    // Remove skeleton when image loads
+    karakterImage.addEventListener('load', function() {
+      karakterImage.classList.remove('loading');
+    });
+    
+    // Handle error case
+    karakterImage.addEventListener('error', function() {
+      karakterImage.classList.remove('loading');
+    });
+  }
+});
+
 // ------------------- SHARE FUNCTIONS ----------------------
 function setupShareButtons(hasil, explanation) {
   const nama = document.getElementById("nama").value;
