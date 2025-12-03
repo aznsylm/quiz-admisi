@@ -170,10 +170,50 @@ function hitungHasil() {
   };
 
   const categoryExplanations = {
-    A: "Bestie, kamu tuh tipe yang suka banget sama angka dan strategi! Dari jawaban kamu, keliatan banget kalau kamu punya jiwa entrepreneur dan suka mikir tentang duit (dalam artian positif ya!). Kamu cocok banget di bidang bisnis karena kamu tipe yang analitis dan suka challenge. Plus, zaman sekarang kan semua serba digital, jadi peluang di fintech, e-commerce, sama startup tuh unlimited banget!",
-    B: "OMG, kamu tuh born to be educator! Dari pilihan kamu, keliatan banget kalau kamu punya passion buat sharing knowledge dan helping others grow. Kamu tipe yang sabar, empathetic, dan suka banget liat orang lain berkembang. Di era digital ini, educator tuh nggak cuma jadi guru loh, bisa jadi content creator edukatif, instructional designer, atau bahkan bikin startup edtech. Your impact bakal huge!",
-    C: "Wah, kamu tuh typical problem solver yang suka banget sama teknologi! Dari jawaban kamu, obvious banget kalau kamu enjoy banget sama logical thinking dan creating something from scratch. Perfect timing sih, karena sekarang tuh era digital transformation, jadi demand untuk tech people tuh crazy high! Kamu bisa jadi software engineer, data scientist, atau bahkan bikin app yang next big thing!",
-    D: "Kamu tuh caring banget dan passionate sama well-being orang lain! Dari pilihan kamu, keliatan kalau kamu tipe yang detail-oriented dan genuinely care about helping people. Healthcare industry tuh always needed dan terus berkembang, apalagi setelah pandemi kemarin. Kamu bisa explore jadi dokter, researcher, atau bahkan bikin health-tech startup. Your contribution bakal meaningful banget!",
+    A: [
+      "Bestie, kamu tuh tipe yang suka banget sama angka dan strategi! Dari jawaban kamu, keliatan banget kalau kamu punya jiwa entrepreneur dan suka mikir tentang duit (dalam artian positif ya!). Kamu cocok banget di bidang bisnis karena kamu tipe yang analitis dan suka challenge. Plus, zaman sekarang kan semua serba digital, jadi peluang di fintech, e-commerce, sama startup tuh unlimited banget!",
+      "Bestie, kamu tuh tipe analitis yang suka banget sama angka dan strategi! Kamu punya jiwa entrepreneur yang kuat dan berorientasi pada hasil dan profit. Kamu cocok di bidang bisnis karena kamu analitis dan punya mindset investasi. Peluang di sektor Finansial dan Manajemen tuh unlimited banget! Semangat ya!",
+      "Vibes-mu tuh Raja Angka banget! Kamu punya bakat buat ngatur finansial dan melihat alur keuntungan. Otakmu encer buat analisis data dan strategi bisnis yang profitable. Goal-mu pasti kemandirian finansial. Jurusan Akuntansi/Ekonomi auto cocok! Ayo, jadi investor kelas kakap!",
+      "Clearly, kamu punya pola pikir strategis dan nyaman dengan isu-isu makro ekonomi. Kamu itu pemikir jangka panjang yang selalu mempertimbangkan untung-rugi. Kamu punya kemampuan analisis tajam di bidang finansial. Tunjukkan strategi killer-mu di dunia bisnis!",
+      "Kamu adalah tipe pemimpin yang fokus pada manajemen anggaran dan memastikan kelancaran operasional. Jiwa Bendahara/Manajer kamu kuat. Ini modal utama buat jadi pemimpin perusahaan yang sukses dan inovatif. Jangan ragu gasss ke Manajemen atau Bisnis!",
+      "Kamu nyaman banget sama pelajaran yang melibatkan data keuangan dan pencatatan transaksi. Minatmu kelihatan banget di Akuntansi dan Ekonomi. Kamu adalah tipe yang teliti, detail, dan berorientasi pada profit. Ciptakan startup yang cuan abis!",
+      "Kamu tipe yang punya urge buat menghitung risiko dan keuntungan sebelum bertindak. Sign ini menunjukkan kamu punya kemampuan analisis bisnis yang kuat. Ekonomi Terapan atau Manajemen Bisnis bakal boost skill alami kamu. Lanjutkan fokus pada analisis dan peluang!",
+      "Minatmu emang di mengatur alokasi dana dan membuat keputusan finansial yang menguntungkan. Vibes-mu cocok banget jadi Direktur Keuangan atau Konsultan Investasi. Kamu punya sense kuat di bidang pasar modal. Kejar impian jadi ahli investasi!",
+      "Kamu punya jiwa wirausaha yang kuat dan fokus pada bagaimana memastikan hasil dari sebuah proyek. Ini sign kamu cocok di dunia Bisnis dan Pemasaran. Kamu punya potensi besar jadi entrepreneur yang handal. Jadilah entrepreneur yang sukses!"
+    ],
+    B: [
+      "OMG, kamu tuh born to be educator! Dari pilihan kamu, keliatan banget kalau kamu punya passion buat sharing knowledge dan helping others grow. Kamu tipe yang sabar, empathetic, dan suka banget liat orang lain berkembang. Di era digital ini, educator tuh nggak cuma jadi guru loh, bisa jadi content creator edukatif, instructional designer, atau bahkan bikin startup edtech. Your impact bakal huge!",
+      "Bestie, kamu tuh punya vibe jadi mentor sejati! Jawaban kamu menunjukkan passion untuk berbagi ilmu dan membantu orang lain berkembang. Kamu cocok di bidang Pendidikan karena kamu punya kemampuan komunikasi dan empati yang tinggi. Kamu bisa jadi guru atau edukator masa kini! Ayo, sebarkan ilmu terbaikmu!",
+      "Wih, kamu punya bakat buat menjelaskan hal-hal kompleks dengan cara yang mudah dipahami! Ini basic skill banget buat jadi pendidik yang keren. Kamu nyaman di lingkungan sosial dan suka jadi Fasilitator di tim. Jurusan Pendidikan auto cocok! Saatnya jadi guru/mentor idola!",
+      "Kamu tertarik pada interaksi sosial dan suka membantu semua anggota tim belajar bersama. Basically, kamu itu Pembimbing alami. Kamu cocok banget di bidang yang melibatkan pelatihan dan pengembangan sumber daya manusia. Kembangkan potensi orang lain!",
+      "Kamu punya ide bisnis yang berfokus pada edukasi atau lembaga belajar. Passion-mu itu emang ada di dunia pendidikan dan sharing knowledge! Kamu punya skill untuk menciptakan metode belajar yang efektif dan menyenangkan. Jadilah pendiri platform edukasi online!",
+      "Kamu suka ngobrolin tentang cara belajar dan strategi sosial. Itu nunjukin kamu peduli pada dinamika kelompok dan knowledge transfer. Jurusan yang berkaitan dengan Ilmu Pendidikan atau Sosiologi bakal boost skill sosialmu. Jadilah social butterfly yang cerdas!",
+      "Kamu tim yang fokus pada efektivitas penyampaian materi agar orang lain mengerti. Vibes kamu kuat banget buat jadi Trainer/Coach Profesional. Kamu cocok di jurusan yang fokus pada pengajaran dan pelatihan. Tingkatkan skill mentoring-mu!",
+      "Pilihanmu mengarah ke peran Fasilitator yang membantu tim belajar dan membimbing. Ini menunjukkan kamu punya mindset pemimpin dan pendidik sejati. Kamu punya bakat untuk mengajar dan menginspirasi orang lain. Ayo, kejar impian jadi Dosen muda yang inovatif!",
+      "Kamu tertarik banget sama metode belajar yang asyik dan lembaga bimbingan berbasis digital. Ini sign kalau kamu punya passion di dunia edukasi dengan sentuhan teknologi. Kamu punya potensi besar di Teknologi Pendidikan. Ciptakan metode belajar masa depan!"
+    ],
+    C: [
+      "Wah, kamu tuh typical problem solver yang suka banget sama teknologi! Dari jawaban kamu, obvious banget kalau kamu enjoy banget sama logical thinking dan creating something from scratch. Perfect timing sih, karena sekarang tuh era digital transformation, jadi demand untuk tech people tuh crazy high! Kamu bisa jadi software engineer, data scientist, atau bahkan bikin app yang next big thing!",
+      "Fix banget, kamu tuh anak Tech Enthusiast! Pola pikirmu itu Teknik banget, suka menciptakan sistem, dan membuat program. Kamu cocok di bidang ini karena punya logika yang kuat dan update soal inovasi teknologi. Peluang jadi engineer atau developer itu unlimited banget! Saatnya menciptakan teknologi masa depan!",
+      "Kamu tim yang suka membongkar dan menganalisis cara kerja sistem secara teknis. Udah jelas, otakmu itu Informatika banget, fokus pada logika dan algoritma. Jurusan Teknik Informatika bakal jadi playground yang seru buatmu! Tunjukkan skill coding terbaikmu!",
+      "Kamu suka Matematika Terapan dan tertarik pada perancangan alat atau robot. Kamu punya mindset seorang inventor yang suka menciptakan hal-hal fisik. Teknik Elektro atau Mekatronika is calling! Ayo, rakit inovasi fisik impianmu!",
+      "Kamu ingin berperan sebagai Teknisi yang merancang sistem digital atau program. Ini sign kuat kalau passion-mu di Teknik Informatika atau Sistem Informasi. Kamu punya bakat merancang hardware dan software! Jadilah engineer sistem jempolan!",
+      "Kamu tertarik banget sama perkembangan teknologi dan inovasi seperti AI. Kamu jago ngelogika sistem dan punya passion di bidang digital. Ilmu Komputer atau Teknik cocok buatmu. Kejar karier di Tech Industry yang lagi naik daun!",
+      "Ide bisnismu merakit alat dan mendesain sistem yang belum ada. Kamu punya mindset seorang engineer sejati! Kamu butuh platform yang fokus pada perancangan dan konstruksi, yaitu jurusan Teknik (Apapun cabangnya). Desainlah alat yang mengubah cara kerja dunia!",
+      "Kamu tertarik banget sama logika matematika dan membuat program komputer. Ini menunjukkan kamu punya modal logic yang kuat. Jurusan Teknik Komputer atau Matematika yang fokus pada coding cocok banget buatmu. Jadilah master logika dan algoritma!",
+      "Pilihanmu konsisten di area bikin program dan merancang sistem yang terstruktur. Kamu nyaman banget sama dunia software development. Sistem Informasi adalah tempat yang tepat buat skill merancangmu. Rancang sistem yang efisien dan andal!"
+    ],
+    D: [
+      "Kamu tuh caring banget dan passionate sama well-being orang lain! Dari pilihan kamu, keliatan kalau kamu tipe yang detail-oriented dan genuinely care about helping people. Healthcare industry tuh always needed dan terus berkembang, apalagi setelah pandemi kemarin. Kamu bisa explore jadi dokter, researcher, atau bahkan bikin health-tech startup. Your contribution bakal meaningful banget!",
+      "Gak salah lagi, kamu punya concern tinggi sama kesejahteraan dan tubuh manusia! Jawaban kamu menunjukkan passion untuk meneliti dampak pada kesehatan. Kamu cocok di bidang Kesehatan karena punya sense of care dan empati yang kuat. Karier kamu bisa jadi dokter, perawat, atau peneliti! Jadilah pahlawan kesehatan masa depan!",
+      "Kamu tim yang suka mencari tahu penyebab dan dampak fenomena pada tubuh secara ilmiah. Ini mindset dokter dan peneliti medis sejati! Kamu tertarik sama Biologi dan Kimia yang mendalam. Jurusan Kedokteran atau Biomedis cocok buatmu. Lanjutkan riset ilmiahmu di bidang medis!",
+      "Kamu paling concern sama pencegahan penyakit dan kesehatan kolektif/komunitas. Vibes kamu kuat banget di Kesehatan Masyarakat atau Gizi. Kamu punya sense of duty yang tinggi dan peduli pada wellness orang banyak. Sebarkan mindset hidup sehat pada komunitas!",
+      "Kamu tertarik banget sama Kimia, Biologi, dan bagaimana zat bereaksi dalam tubuh. Ide bisnismu mendirikan fasilitas kesehatan? Kamu punya passion menemukan solusi medis. Jurusan Farmasi bakal support minat risetmu! Ayo, temukan dan kembangkan obat masa depan!",
+      "Peran utamamu di tim adalah menjaga kesejahteraan dan memastikan kondisi fisik teman-teman aman. Ini menunjukkan kamu punya skill perhatian dan empati yang tinggi. Kamu cocok jadi Perawat atau Tenaga Medis lainnya. Berikan pelayanan dan perhatian medis terbaik!",
+      "Kamu suka concern pada aspek-aspek kesehatan pribadi dan kesehatan jangka panjang. Ini nunjukin kamu punya perhatian ke detail kesehatan. Ilmu Gizi atau Kesehatan Lingkungan bisa jadi pilihan keren! Jadilah ahli wellness yang up-to-date!",
+      "Ide bisnismu aplikasi konsultasi atau solusi kesehatan digital. Kamu ngeliat peluang di bidang Kesehatan dengan sentuhan teknologi. Kamu punya mindset yang ingin mempermudah akses kesehatan. Ciptakan aplikasi kesehatan yang membantu banyak orang!",
+      "Pilihanmu mengarah ke semua hal yang berhubungan dengan tubuh dan penelitian ilmiah mendalam. Ini sign kuat kamu nyaman dengan ilmu Biologi yang detail. Biologi atau Ilmu Forensik adalah platform yang tepat. Selami detail ilmu hayati dan tubuh manusia!"
+    ]
   };
 
   let hasil = topCategories.map((cat) => categoryNames[cat]);
@@ -201,7 +241,8 @@ function hitungHasil() {
       } else {
         let explanation = "";
         if (topCategories.length === 1) {
-          explanation = categoryExplanations[topCategories[0]];
+          const randomIndex = Math.floor(Math.random() * categoryExplanations[topCategories[0]].length);
+          explanation = categoryExplanations[topCategories[0]][randomIndex];
         } else {
           explanation =
             "Wah, kamu tuh multi-talented banget! Hasil kamu menunjukkan minat yang seimbang di beberapa bidang. Ini actually advantage loh, karena kamu bisa explore interdisciplinary programs atau double major. Fleksibilitas kamu bakal jadi kekuatan di masa depan!";
@@ -334,7 +375,7 @@ function setupShareButtons(hasil, explanation) {
 function kirimKeSpreadsheet(data) {
   return new Promise((resolve, reject) => {
     const scriptURL =
-      "https://script.google.com/macros/s/AKfycbwV19wf0YZbS4OeNmhPQziwHxmkXCulxuB0fiBF7-048xL2Irei89BDNjUfGCGn1oaRtw/exec";
+      "https://script.google.com/macros/s/AKfycbwhxWEiTCGf77wQSYAukpiRGm0BMFNY-6sY-8tSOjszQXneaADJpORNppvpwDf1ZPk79A/exec";
 
     fetch(scriptURL, {
       method: 'POST',
