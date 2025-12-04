@@ -332,6 +332,13 @@ function isMobileDevice() {
 }
 
 // ------------------- IMAGE LOADING OPTIMIZATION ----------------------
+// Preload background image
+const bgImage = new Image();
+bgImage.src = 'assets/image/BG-WEB-QUIZ.png';
+bgImage.onload = function() {
+  document.body.style.backgroundImage = `url('${bgImage.src}')`;
+};
+
 document.addEventListener("DOMContentLoaded", function () {
   const karakterImage = document.querySelector(".karakter-image");
 
