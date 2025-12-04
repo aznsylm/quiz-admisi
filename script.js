@@ -56,6 +56,7 @@ const soal = [
 let nomor = 0;
 let jawaban = [];
 let selectedAnswer = null;
+let shuffledOptions = []; // Menyimpan urutan pilihan yang sudah diacak
 
 const formSection = document.getElementById("form-section");
 const quizSection = document.getElementById("quiz-section");
@@ -141,11 +142,23 @@ function tampilSoal() {
   nextBtn.classList.add("hidden");
   selectedAnswer = null;
 
-  soal[nomor].a.forEach((item, index) => {
+  // Buat array dengan jawaban dan kategori
+  const options = soal[nomor].a.map((answer, index) => ({
+    text: answer,
+    category: soal[nomor].k[index]
+  }));
+
+  // Acak urutan pilihan jika belum ada atau soal baru
+  if (!shuffledOptions[nomor]) {
+    shuffledOptions[nomor] = shuffleArray(options);
+  }
+
+  // Tampilkan pilihan yang sudah diacak
+  shuffledOptions[nomor].forEach((option) => {
     const btn = document.createElement("button");
     btn.className = "pilihan-btn";
-    btn.innerText = item;
-    btn.onclick = () => pilihJawaban(soal[nomor].k[index], btn);
+    btn.innerText = option.text;
+    btn.onclick = () => pilihJawaban(option.category, btn);
     pilihanDiv.appendChild(btn);
   });
 
@@ -153,8 +166,11 @@ function tampilSoal() {
   if (jawaban[nomor]) {
     selectedAnswer = jawaban[nomor];
     const buttons = document.querySelectorAll(".pilihan-btn");
-    buttons.forEach((btn, index) => {
-      if (soal[nomor].k[index] === selectedAnswer) {
+    buttons.forEach((btn) => {
+      // Cari kategori dari button yang diklik
+      const buttonText = btn.innerText;
+      const matchedOption = shuffledOptions[nomor].find(opt => opt.text === buttonText);
+      if (matchedOption && matchedOption.category === selectedAnswer) {
         btn.classList.add("selected");
         nextBtn.classList.remove("hidden");
       }
@@ -329,6 +345,16 @@ function isMobileDevice() {
   );
 }
 
+// Fungsi untuk mengacak array
+function shuffleArray(array) {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
 // ------------------- IMAGE LOADING OPTIMIZATION ----------------------
 // Preload background image
 const bgImage = new Image();
@@ -425,7 +451,7 @@ function setupShareButtons(hasil, explanation) {
 
   // TikTok Share - Direct to TikTok
   document.getElementById("copyTikTok").onclick = function () {
-    const text = `POV: Quiz 5 menit ini literally changed my perspective 😭\n\nHasilku: ${hasil}\n\nGa nyangka bisa serelate ini... Kalian harus coba! Tapi siap-siap shock ya \n\nkenaliaku.almaata.ac.id\n\n`;
+    const text = `POV: Quiz 5 menit ini literally changed my perspective \n\nHasilku: ${hasil}\n\nGa nyangka bisa serelate ini... Kalian harus coba! Tapi siap-siap shock ya \n\nkenaliaku.almaata.ac.id\n\n`;
 
     // Copy to clipboard first
     navigator.clipboard
