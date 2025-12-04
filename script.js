@@ -283,8 +283,6 @@ function hitungHasil() {
   const dataKirim = {
     nama: document.getElementById("nama").value,
     asal: document.getElementById("asal").value,
-    email: document.getElementById("email").value,
-    cita: document.getElementById("cita").value,
     A: count.A,
     B: count.B,
     C: count.C,
@@ -461,7 +459,7 @@ function setupShareButtons(hasil, explanation) {
 function kirimKeSpreadsheet(data) {
   return new Promise((resolve, reject) => {
     const scriptURL =
-      "https://script.google.com/macros/s/AKfycbxi_ePyePMUiwNBUl5BRGCWYcAxAebPw--lntmE5kgrtQ39SUgCsKMA1AnqWPbYP11Phw/exec";
+      "https://script.google.com/macros/s/AKfycbylaDNmBuAUFtU5X1esvn512x1NaT8kINfS1xYI0MiL0guytobH3soMm8HXX_Zonp0SNA/exec";
 
     fetch(scriptURL, {
       method: "POST",
