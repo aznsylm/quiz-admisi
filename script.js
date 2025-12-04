@@ -79,45 +79,45 @@ function startMusic() {
 }
 
 // Music toggle functionality
-musicToggle.addEventListener('click', function() {
+musicToggle.addEventListener("click", function () {
   if (isMuted) {
     bgMusic.muted = false;
     bgMusic.play();
-    musicToggle.innerHTML = '🔊 Musik';
-    musicToggle.classList.remove('muted');
+    musicToggle.innerHTML = "🔊 Musik";
+    musicToggle.classList.remove("muted");
     isMuted = false;
   } else {
     bgMusic.pause();
-    musicToggle.innerHTML = '🔇 Musik';
-    musicToggle.classList.add('muted');
+    musicToggle.innerHTML = "🔇 Musik";
+    musicToggle.classList.add("muted");
     isMuted = true;
   }
 });
 
 // Auto-start music on first interaction
-document.addEventListener('click', startMusic, { once: true });
-document.addEventListener('touchstart', startMusic, { once: true });
+document.addEventListener("click", startMusic, { once: true });
+document.addEventListener("touchstart", startMusic, { once: true });
 
 // ------------------- SCROLL DOWN BUTTON ----------------------
-document.getElementById("scrollDownBtn").addEventListener("click", function() {
+document.getElementById("scrollDownBtn").addEventListener("click", function () {
   // Check which section is currently visible and scroll to the appropriate target
   if (!formSection.classList.contains("hidden")) {
     // If form is visible, scroll to it
     document.getElementById("form-section").scrollIntoView({
       behavior: "smooth",
-      block: "start"
+      block: "start",
     });
   } else if (!quizSection.classList.contains("hidden")) {
     // If quiz is visible, scroll to it
     document.getElementById("quiz-section").scrollIntoView({
       behavior: "smooth",
-      block: "start"
+      block: "start",
     });
   } else if (!hasilSection.classList.contains("hidden")) {
     // If result is visible, scroll to it
     document.getElementById("hasil-section").scrollIntoView({
       behavior: "smooth",
-      block: "start"
+      block: "start",
     });
   }
 });
@@ -235,7 +235,7 @@ function hitungHasil() {
       "Nakama, kamu mirip Tom yang bikin kapal impian! Teliti, detail, dan selalu fokus pada kualitas hasil. Kamu cocok jadi 'shipwright' di dunia akuntansi yang bisa bikin 'financial ship' yang kuat dan tahan badai ekonomi!",
       "Kamu kayak Spandam yang jago strategi (tapi versi baik)! Selalu hitung untung-rugi sebelum bertindak dan punya kemampuan analisis risiko yang tajam. Perfect buat jadi 'CP9 agent' di dunia manajemen bisnis!",
       "Vibes kamu mirip Gild Tesoro yang menguasai dunia entertainment! Punya sense kuat di bidang investasi dan pasar modal. Kamu bisa jadi 'Golden Emperor' yang ngatur alokasi dana dengan bijak. Time to make it rain gold!",
-      "Kamu punya jiwa Whitebeard dalam memimpin 'family business'! Fokus pada hasil dan kesejahteraan crew, plus punya kemampuan entrepreneurship yang kuat. Siap jadi 'Yonko' di dunia startup yang powerful dan berpengaruh!"
+      "Kamu punya jiwa Whitebeard dalam memimpin 'family business'! Fokus pada hasil dan kesejahteraan crew, plus punya kemampuan entrepreneurship yang kuat. Siap jadi 'Yonko' di dunia startup yang powerful dan berpengaruh!",
     ],
     B: [
       "Wah, kamu mirip Robin banget! Kayak archaeologist Straw Hat yang suka sharing knowledge tentang sejarah, kamu juga punya passion buat ngajarin dan ngembangin orang lain. Kamu bisa jadi 'Devil Child' yang nyebarin ilmu ke seluruh dunia. Ready to decode the mysteries of education?",
@@ -246,7 +246,7 @@ function hitungHasil() {
       "Kamu punya karakter Jinbe yang jadi bridge antar komunitas! Suka ngobrolin strategi sosial dan peduli sama dinamika kelompok. Perfect buat jadi 'Knight of the Sea' di bidang sosiologi pendidikan!",
       "Nakama, kamu mirip Sengoku yang jadi strategist handal! Fokus pada efektivitas training dan punya skill mentoring yang kuat. Kamu cocok jadi 'Fleet Admiral' di dunia coaching profesional!",
       "Kamu kayak Vegapunk yang genius dan innovative! Punya mindset futuristik buat menciptakan revolusi di dunia pendidikan. Siap jadi 'World's Greatest Scientist' di bidang teknologi pembelajaran?",
-      "Vibes kamu mirip Brook yang bisa 'revive' semangat belajar orang! Punya passion di edukasi digital dan metode pembelajaran yang engaging. Time to be the 'Soul King' of modern education!"
+      "Vibes kamu mirip Brook yang bisa 'revive' semangat belajar orang! Punya passion di edukasi digital dan metode pembelajaran yang engaging. Time to be the 'Soul King' of modern education!",
     ],
     C: [
       "SUUUPER! Kamu punya vibe Franky yang kuat! Kayak shipwright genius yang bikin Thousand Sunny, kamu juga suka banget bikin dan merancang sesuatu dari nol. Kamu cocok jadi 'Cyborg' di dunia teknologi. Time to build your dream ship of innovation!",
@@ -257,7 +257,7 @@ function hitungHasil() {
       "Nakama, kamu kayak Judge yang bikin Germa 66 technology! Tertarik sama AI dan inovasi cutting-edge. Kemampuan analisis sistem-mu bakal bikin kamu jadi 'Vinsmoke' di tech industry!",
       "Kamu mirip Tom yang bikin Sea Train! Punya mindset engineer sejati yang suka design sistem transportation dan infrastructure. Time to build the 'Puffing Tom' of modern technology!",
       "Vibes kamu kayak Kizaru yang menguasai light technology! Jago banget sama logika matematika dan programming. Siap jadi 'Admiral' di dunia komputer yang bisa move at the speed of light?",
-      "Kamu punya jiwa Smoker yang systematic dan terstruktur! Nyaman banget sama software development dan system architecture. Perfect buat jadi 'White Hunter' yang hunt bugs dan create efficient systems!"
+      "Kamu punya jiwa Smoker yang systematic dan terstruktur! Nyaman banget sama software development dan system architecture. Perfect buat jadi 'White Hunter' yang hunt bugs dan create efficient systems!",
     ],
     D: [
       "Kamu tuh Chopper banget, nakama! Kayak doctor Straw Hat yang selalu peduli sama kesehatan crew, kamu juga punya jiwa caring dan detail-oriented. Kamu bisa jadi 'Monster Point' di dunia medis. Siap jadi dokter yang bisa nyembuhin semua penyakit?",
@@ -268,12 +268,12 @@ function hitungHasil() {
       "Nakama, kamu kayak Kureha yang jadi guardian of health! Peran utamamu selalu jaga kesejahteraan orang lain dengan skill empati yang tinggi. Perfect buat jadi 'Witch Doctor' yang caring dan professional!",
       "Kamu mirip Marco yang punya 'Phoenix' healing power! Concern banget sama kesehatan jangka panjang dan detail wellness. Siap jadi ahli gizi atau kesehatan lingkungan yang bisa regenerate community health?",
       "Vibes kamu kayak Vegapunk yang bikin medical technology! Punya vision buat menciptakan health-tech solution yang bisa help banyak orang. Time to be the 'World's Greatest Medical Scientist'!",
-      "Kamu punya jiwa Zeff yang protective terhadap 'family'! Selalu concern sama detail kesehatan dan safety orang-orang terdekat. Perfect buat explore biologi atau forensik yang bisa protect and serve justice!"
-    ]
+      "Kamu punya jiwa Zeff yang protective terhadap 'family'! Selalu concern sama detail kesehatan dan safety orang-orang terdekat. Perfect buat explore biologi atau forensik yang bisa protect and serve justice!",
+    ],
   };
 
   let hasil = topCategories.map((cat) => categoryNames[cat]);
-  
+
   let hasilText =
     hasil.length === 1
       ? `Minatmu adalah: ${hasil[0]}`
@@ -302,7 +302,9 @@ function hitungHasil() {
       } else {
         let explanation = "";
         if (topCategories.length === 1) {
-          const randomIndex = Math.floor(Math.random() * categoryExplanations[topCategories[0]].length);
+          const randomIndex = Math.floor(
+            Math.random() * categoryExplanations[topCategories[0]].length
+          );
           explanation = categoryExplanations[topCategories[0]][randomIndex];
         } else {
           explanation =
@@ -324,26 +326,39 @@ function hitungHasil() {
 
 // ------------------- UTILITY FUNCTIONS ----------------------
 function isMobileDevice() {
-  return /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  return /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  );
 }
 
 // ------------------- IMAGE LOADING OPTIMIZATION ----------------------
-document.addEventListener('DOMContentLoaded', function() {
-  const karakterImage = document.querySelector('.karakter-image');
-  
+document.addEventListener("DOMContentLoaded", function () {
+  const karakterImage = document.querySelector(".karakter-image");
+
   if (karakterImage) {
-    // Add loading class for skeleton effect
-    karakterImage.classList.add('loading');
-    
-    // Remove skeleton when image loads
-    karakterImage.addEventListener('load', function() {
-      karakterImage.classList.remove('loading');
-    });
-    
-    // Handle error case
-    karakterImage.addEventListener('error', function() {
-      karakterImage.classList.remove('loading');
-    });
+    // Check if image is already loaded
+    if (karakterImage.complete && karakterImage.naturalHeight !== 0) {
+      // Image already loaded
+      karakterImage.classList.remove("loading");
+    } else {
+      // Add loading class for skeleton effect
+      karakterImage.classList.add("loading");
+
+      // Remove skeleton when image loads
+      karakterImage.addEventListener("load", function () {
+        karakterImage.classList.remove("loading");
+      });
+
+      // Handle error case
+      karakterImage.addEventListener("error", function () {
+        karakterImage.classList.remove("loading");
+      });
+
+      // Fallback timeout to ensure skeleton is removed
+      setTimeout(() => {
+        karakterImage.classList.remove("loading");
+      }, 3000);
+    }
   }
 });
 
@@ -439,21 +454,21 @@ function setupShareButtons(hasil, explanation) {
 function kirimKeSpreadsheet(data) {
   return new Promise((resolve, reject) => {
     const scriptURL =
-      "https://script.google.com/macros/s/AKfycbwhxWEiTCGf77wQSYAukpiRGm0BMFNY-6sY-8tSOjszQXneaADJpORNppvpwDf1ZPk79A/exec";
+      "https://script.google.com/macros/s/AKfycbxi_ePyePMUiwNBUl5BRGCWYcAxAebPw--lntmE5kgrtQ39SUgCsKMA1AnqWPbYP11Phw/exec";
 
     fetch(scriptURL, {
-      method: 'POST',
-      mode: 'no-cors',
+      method: "POST",
+      mode: "no-cors",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     })
-    .then(() => {
-      resolve('success');
-    })
-    .catch((error) => {
-      reject(error);
-    });
+      .then(() => {
+        resolve("success");
+      })
+      .catch((error) => {
+        reject(error);
+      });
   });
 }

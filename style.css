@@ -10,13 +10,23 @@ body {
     line-height: 1.6;
     padding: 15px;
     min-height: 100vh;
-    background-image: url('assets/image/BG\ WEB\ QUIZ.png');
+    background-image: url('assets/image/BG-WEB-QUIZ.png');
     background-size: cover;
-    background-position: center;
+    background-position: center center;
     background-repeat: no-repeat;
-    background-attachment: scroll;
-    will-change: transform;
-    contain: layout style paint;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+/* iOS Safari background fix */
+@supports (-webkit-touch-callout: none) {
+    body {
+        background-attachment: scroll;
+        background-size: cover;
+        min-height: -webkit-fill-available;
+    }
 }
 
 /* Disable scroll on desktop */
@@ -82,9 +92,10 @@ section {
 .karakter-image.loading {
     background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
     background-size: 200% 100%;
-    animation: shimmer 1.5s infinite;
+    animation: shimmer 1.5s infinite linear;
     min-height: 200px;
-    opacity: 0.7;
+    opacity: 0.8;
+    border-radius: 15px;
 }
 
 .karakter-image:not(.loading) {
