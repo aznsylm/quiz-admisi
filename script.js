@@ -99,6 +99,28 @@ musicToggle.addEventListener("click", function () {
 document.addEventListener("click", startMusic, { once: true });
 document.addEventListener("touchstart", startMusic, { once: true });
 
+// ------------------- VALIDASI NOMOR HP ----------------------
+document.getElementById('nohp').addEventListener('input', function(e) {
+  let value = e.target.value.replace(/\D/g, ''); // Hanya angka
+  
+  if (value.length >= 2) {
+    value = '08' + value.substring(2); // Force 08 prefix
+  }
+  
+  if (value.length > 15) {
+    value = value.substring(0, 15); // Max 15 digit
+  }
+  
+  e.target.value = value;
+});
+
+// Pastikan selalu dimulai dengan 08
+document.getElementById('nohp').addEventListener('focus', function(e) {
+  if (e.target.value === '') {
+    e.target.value = '08';
+  }
+});
+
 // ------------------- SCROLL DOWN BUTTON ----------------------
 document.getElementById("scrollDownBtn").addEventListener("click", function () {
   // Check which section is currently visible and scroll to the appropriate target
@@ -229,16 +251,14 @@ function hitungHasil() {
   let count = { A: 0, B: 0, C: 0, D: 0 };
   jawaban.forEach((j) => count[j]++);
 
-  let maxScore = Math.max(...Object.values(count));
-  let topCategories = Object.keys(count).filter(
-    (key) => count[key] === maxScore
-  );
+  // Cari kategori pertama yang >=40% (2 dari 5 jawaban)
+  let topCategory = ['A', 'B', 'C', 'D'].find(cat => count[cat] >= 2) || 'A';
 
   const categoryNames = {
-    A: "Ekonomi, Bisnis, dan Akuntansi",
+    A: "Ekonomi & Bisnis",
     B: "Ilmu Pendidikan",
-    C: "Teknik & Informatika",
-    D: "Kesehatan & Kedokteran",
+    C: "Teknologi & Teknik",
+    D: "Kedokteran & Kesehatan",
   };
 
   const categoryExplanations = {
@@ -288,53 +308,50 @@ function hitungHasil() {
     ],
   };
 
-  let hasil = topCategories.map((cat) => categoryNames[cat]);
-
-  let hasilText =
-    hasil.length === 1
-      ? `Minatmu adalah: ${hasil[0]}`
-      : `Minatmu adalah: ${hasil.join(" dan ")}`;
+  let hasil = categoryNames[topCategory];
+  let hasilText = `Minatmu adalah: ${hasil}`;
 
   // --- SIMPAN KE SPREADSHEET ---
   const dataKirim = {
     nama: document.getElementById("nama").value,
     asal: document.getElementById("asal").value,
+    nohp: document.getElementById("nohp").value,
     A: count.A,
     B: count.B,
     C: count.C,
     D: count.D,
-    hasil: hasil.join(", "),
+    hasil: hasil,
   };
 
   document.getElementById("hasilText").innerText = "Tunggu sebentar ya... ";
 
   kirimKeSpreadsheet(dataKirim)
-    .then((response) => {
-      if (response === "duplicate") {
-        document.getElementById("hasilText").innerText =
-          "Email sudah pernah digunakan! Setiap email hanya bisa mengisi sekali.";
-      } else {
-        let explanation = "";
-        if (topCategories.length === 1) {
-          const randomIndex = Math.floor(
-            Math.random() * categoryExplanations[topCategories[0]].length
-          );
-          explanation = categoryExplanations[topCategories[0]][randomIndex];
-        } else {
-          explanation =
-            "Wah, kamu tuh multi-talented banget! Hasil kamu menunjukkan minat yang seimbang di beberapa bidang. Ini actually advantage loh, karena kamu bisa explore interdisciplinary programs atau double major. Fleksibilitas kamu bakal jadi kekuatan di masa depan!";
-        }
-        document.getElementById(
-          "hasilText"
-        ).innerHTML = `<h4>${hasilText}</h4><br>${explanation}<br><br>Semangat ya! `;
+    .then(() => {
+      const randomIndex = Math.floor(
+        Math.random() * categoryExplanations[topCategory].length
+      );
+      let explanation = categoryExplanations[topCategory][randomIndex];
+      
+      document.getElementById(
+        "hasilText"
+      ).innerHTML = `<h4>${hasilText}</h4><br>${explanation}<br><br>Semangat ya! `;
 
-        // Setup share functionality
-        setupShareButtons(hasilText, explanation);
-      }
+      // Setup share functionality
+      setupShareButtons(hasilText, explanation);
     })
     .catch(() => {
-      document.getElementById("hasilText").innerText =
-        hasilText + "\n Gagal menyimpan data";
+      // Tetap tampilkan hasil meskipun ada error karena data sudah tersimpan
+      const randomIndex = Math.floor(
+        Math.random() * categoryExplanations[topCategory].length
+      );
+      let explanation = categoryExplanations[topCategory][randomIndex];
+      
+      document.getElementById(
+        "hasilText"
+      ).innerHTML = `<h4>${hasilText}</h4><br>${explanation}<br><br>Semangat ya! `;
+
+      // Setup share functionality
+      setupShareButtons(hasilText, explanation);
     });
 }
 
@@ -393,99 +410,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// ------------------- SHARE FUNCTIONS ----------------------
-function setupShareButtons(hasil, explanation) {
-  const nama = document.getElementById("nama").value;
-
-  // WhatsApp Share - Direct to WhatsApp
-  document.getElementById("shareWA").onclick = function () {
-    const text = `OMG! Baru tau ternyata aku cocok banget di bidang ${hasil}! \n\nQuiz ini relate banget, cuma 5 pertanyaan tapi hasilnya spot on! \n\nKamu penasaran ga sih jurusan apa yang cocok buat kamu? Coba deh: kenaliaku.almaata.ac.id\n\nDijamin mind-blown! 🤯`;
-
-    if (isMobileDevice()) {
-      // Mobile: Try WhatsApp app first
-      window.location.href = `whatsapp://send?text=${encodeURIComponent(text)}`;
-
-      // Fallback to web WhatsApp after 2 seconds if app doesn't open
-      setTimeout(() => {
-        window.open(
-          `https://wa.me/?text=${encodeURIComponent(text)}`,
-          "_blank"
-        );
-      }, 2000);
-    } else {
-      // Desktop: Open WhatsApp Web
-      window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank");
-    }
-  };
-
-  // Instagram Share - Direct to Instagram
-  document.getElementById("copyIG").onclick = function () {
-    const text = `Plot twist: Ternyata aku cocok di ${hasil}! 😳\n\nQuiz 5 menit ini beneran buka mata banget... Ga nyangka hasilnya serelate ini! ✨\n\nKalian berani ga coba? Siap-siap kaget sama hasilnya \nkenaliaku.almaata.ac.id\n\n`;
-
-    // Copy to clipboard first
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
-        if (isMobileDevice()) {
-          // Try to open Instagram app
-          window.location.href = "instagram://camera";
-
-          // Show instruction
-          setTimeout(() => {
-            alert(
-              "Text sudah di-copy! Instagram akan terbuka, tinggal paste di Stories ya!"
-            );
-          }, 1000);
-        } else {
-          // Desktop: Open Instagram web and show instruction
-          window.open("https://www.instagram.com/", "_blank");
-          alert(
-            "Text sudah di-copy! Instagram web akan terbuka, paste di Stories ya!"
-          );
-        }
-      })
-      .catch(() => {
-        alert("Gagal copy text. Coba lagi ya!");
-      });
-  };
-
-  // TikTok Share - Direct to TikTok
-  document.getElementById("copyTikTok").onclick = function () {
-    const text = `POV: Quiz 5 menit ini literally changed my perspective \n\nHasilku: ${hasil}\n\nGa nyangka bisa serelate ini... Kalian harus coba! Tapi siap-siap shock ya \n\nkenaliaku.almaata.ac.id\n\n`;
-
-    // Copy to clipboard first
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
-        if (isMobileDevice()) {
-          // Try to open TikTok app
-          window.location.href = "tiktok://camera";
-
-          // Show instruction
-          setTimeout(() => {
-            alert(
-              "Caption sudah di-copy! TikTok akan terbuka, tinggal paste ya!"
-            );
-          }, 1000);
-        } else {
-          // Desktop: Open TikTok web and show instruction
-          window.open("https://www.tiktok.com/upload", "_blank");
-          alert(
-            "Caption sudah di-copy! TikTok web akan terbuka, paste di caption ya!"
-          );
-        }
-      })
-      .catch(() => {
-        alert("Gagal copy caption. Coba lagi ya!");
-      });
-  };
-}
-
 // ------------------- KIRIM KE SPREADSHEET ----------------------
 function kirimKeSpreadsheet(data) {
   return new Promise((resolve, reject) => {
     const scriptURL =
-      "https://script.google.com/macros/s/AKfycbylaDNmBuAUFtU5X1esvn512x1NaT8kINfS1xYI0MiL0guytobH3soMm8HXX_Zonp0SNA/exec";
+      "https://script.google.com/macros/s/AKfycbygi2oo-W9721x48PhWYisOp0wPzzoRMGJrvlExptj7iNs8Bs73veU0y5sUs_WRcwMpqw/exec";
 
     fetch(scriptURL, {
       method: "POST",

@@ -27,7 +27,7 @@
         <!-- WELCOME TEXT -->
         <div class="welcome-section">
             <h2>Udah nemuin 'One Piece' jurusan impianmu?</h2>
-            <p class="welcome-text">Kayak Luffy yang nyari One Piece, kamu juga lagi nyari "harta karun" berupa jurusan yang tepat kan? Quiz ini bakal jadi peta harta karun yang nunjukin jalan menuju masa depan cerah kamu. Ready to sail, nakama?</p>
+            <p class="welcome-text typewriter">Kayak Luffy yang nyari One Piece, kamu juga lagi nyari "harta karun" berupa jurusan yang tepat kan? Quiz ini bakal jadi peta harta karun yang nunjukin jalan menuju masa depan cerah kamu. Ready to sail, nakama?</p>
             <button id="scrollDownBtn" class="scroll-down-btn">Gaskeun!</button>
             <img src="assets/image/Karakter.png" alt="Karakter Image" class="karakter-image" loading="eager" decoding="async">
         </div>
@@ -39,6 +39,8 @@
                 <form id="formIdentitas">
                     <input type="text" id="nama" placeholder="Nama Lengkap" required>
                     <input type="text" id="asal" placeholder="Asal Sekolah" required>
+                    <input type="tel" id="nohp" placeholder="08xxxxxxxxx" required maxlength="15">
+                    <small class="wa-info">Hasil lengkap akan dikirim via WhatsApp ke nomor ini. Pastikan nomor aktif!</small>
 
                     <button type="submit">Mulai Tes</button>
                 </form>
@@ -61,14 +63,6 @@
             <section id="hasil-section" class="hidden">
                 <h3>Hasil Kamu</h3>
                 <p id="hasilText"></p>
-                <div class="share-section">
-                    <h3>Bagikan Hasilmu!</h3>
-                    <div class="share-buttons">
-                        <button id="shareWA" class="share-btn wa-btn">Share ke WhatsApp</button>
-                        <button id="copyIG" class="share-btn ig-btn">Copy untuk Instagram</button>
-                        <button id="copyTikTok" class="share-btn tiktok-btn">Copy untuk TikTok</button>
-                    </div>
-                </div>
             </section>
         </div>
     </div>
