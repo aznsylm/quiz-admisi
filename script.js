@@ -103,8 +103,14 @@ document.addEventListener("touchstart", startMusic, { once: true });
 document.getElementById('nohp').addEventListener('input', function(e) {
   let value = e.target.value.replace(/\D/g, ''); // Hanya angka
   
-  if (value.length >= 2) {
-    value = '08' + value.substring(2); // Force 08 prefix
+  // Jika tidak dimulai dengan 08, paksa jadi 08
+  if (value.length >= 2 && !value.startsWith('08')) {
+    value = '08' + value.substring(2);
+  }
+  
+  // Jika kurang dari 2 digit, pastikan dimulai dengan 08
+  if (value.length > 0 && value.length < 2) {
+    value = '08';
   }
   
   if (value.length > 15) {
@@ -315,7 +321,7 @@ function hitungHasil() {
   const dataKirim = {
     nama: document.getElementById("nama").value,
     asal: document.getElementById("asal").value,
-    nohp: document.getElementById("nohp").value,
+    nohp: "'" + document.getElementById("nohp").value,
     A: count.A,
     B: count.B,
     C: count.C,
